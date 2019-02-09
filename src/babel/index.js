@@ -435,7 +435,7 @@ const names = {
     "biggie",
     "shit",
     "nike",
-    "pimping",
+    "pimpin",
     "tech",
     "deuce",
     "hustle",
