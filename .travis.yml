@@ -1,6 +1,13 @@
 language: node_js
+env:
+  global:
+  - DEVELOPMENT_PATH="/home/travisaw/travisaw.com/test/dev/synth-patch-name-generator"
+  - PRODUCTION_PATH="/home/travisaw/travisaw.com/test/pro/synth-patch-name-generator"
+  - SSH_USER="travisaw"
+  - SSH_HOST="travisawagner.com"
+  - DEPLOY_IGNORE="./.deployignore"
 node_js:
-- "lts/*"
+- "node"
 cache: npm
 addons:
   ssh_known_hosts: travisawagner.com
@@ -17,4 +24,4 @@ deploy:
   script: bash ./.deploy.sh
   on:
     all_branches: true
-    condition: "$TRAVIS_BRANCH =~ ^develop|master$"
+    condition: "$TRAVIS_BRANCH =~ ^dev|master$"
