@@ -1,11 +1,12 @@
 language: node_js
 env:
-- DEVELOPMENT_PATH="/home/travisaw/travisaw.com/test/dev/synth-patch-name-generator"
-- PRODUCTION_PATH="/home/travisaw/travisaw.com/test/pro/synth-patch-name-generator"
-- SSH_USER="travisaw"
-- SSH_HOST="travisawagner.com"
-- DEPLOY_IGNORE="./.deployignore"
-- DEPLOY_PATH=$DEVELOPMENT_PATH
+  global:
+  - DEVELOPMENT_PATH="/home/travisaw/travisaw.com/test/dev/synth-patch-name-generator"
+  - PRODUCTION_PATH="/home/travisaw/travisaw.com/test/pro/synth-patch-name-generator"
+  - SSH_USER="travisaw"
+  - SSH_HOST="travisawagner.com"
+  - DEPLOY_IGNORE="./.deployignore"
+  - DEPLOY_PATH=$DEVELOPMENT_PATH
 node_js:
 - "node"
 cache: npm
