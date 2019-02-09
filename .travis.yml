@@ -1,4 +1,11 @@
 language: node_js
+env:
+- DEVELOPMENT_PATH="/home/travisaw/travisaw.com/test/dev/synth-patch-name-generator"
+- PRODUCTION_PATH="/home/travisaw/travisaw.com/test/pro/synth-patch-name-generator"
+- SSH_USER="travisaw"
+- SSH_HOST="travisawagner.com"
+- DEPLOY_IGNORE="./.deployignore"
+- DEPLOY_PATH=$DEVELOPMENT_PATH
 node_js:
 - "node"
 cache: npm
@@ -14,7 +21,9 @@ before_install:
 deploy:
   provider: script
   skip_cleanup: true
-  script: bash ./.deploy.sh
+  script:
+  - if [ $TRAVIS_BRANCH = "master" ]; then DEPLOY_PATH=$PRODUCTION_PATH; fi
+  - rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ --exclude-from=$DEPLOY_IGNORE $SSH_USER@$SSH_HOST:$DEPLOY_PATH
   on:
     all_branches: true
     condition: "$TRAVIS_BRANCH =~ ^dev|master$"
