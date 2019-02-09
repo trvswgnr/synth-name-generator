@@ -1,0 +1,26 @@
+{
+  "name": "synth-patch-name-generator",
+  "version": "0.1.0",
+  "description": "easy patch name generator for synths",
+  "main": "config.js",
+  "scripts": {
+    "test": "node config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trvswgnr/synth-patch-name-generator.git"
+  },
+  "author": "travis wagner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trvswgnr/synth-patch-name-generator/issues"
+  },
+  "homepage": "https://github.com/trvswgnr/synth-patch-name-generator#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "fs": "0.0.1-security",
+    "node-sass": "^4.11.0",
+    "pug": "^2.0.3"
+  }
+}
