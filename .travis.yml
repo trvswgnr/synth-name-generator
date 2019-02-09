@@ -6,8 +6,6 @@ env:
   - SSH_USER="travisaw"
   - SSH_HOST="travisawagner.com"
   - DEPLOY_IGNORE="./.deployignore"
-  - TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST
-  - DEPLOY_PATH=$DEVELOPMENT_PATH
 node_js:
 - "node"
 cache: npm
@@ -23,9 +21,7 @@ before_install:
 deploy:
   provider: script
   skip_cleanup: true
-  script:
-  - if [ $TRAVIS_BRANCH = "master" ]; then DEPLOY_PATH=$PRODUCTION_PATH; fi
-  - rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ --exclude-from=$DEPLOY_IGNORE $SSH_USER@$SSH_HOST:$DEPLOY_PATH
+  script: bash ./.deploy.sh
   on:
     all_branches: true
     condition: "$TRAVIS_BRANCH =~ ^dev|master$"
