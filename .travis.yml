@@ -11,7 +11,12 @@ env:
   - SSH_USER="travisaw"
   - SSH_HOST="travisawagner.com"
   - DEPLOY_IGNORE="./.deployignore"
-before_install: bash ./decrypt.sh
+before_install:
+- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then exit 0; fi # dont run if is a pull request
+- bash ./decrypt.sh
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/deploy_rsa
+- ssh-add /tmp/deploy_rsa
 deploy:
 - provider: script
   skip_cleanup: true
